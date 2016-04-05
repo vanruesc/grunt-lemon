@@ -4,11 +4,16 @@
 [![Dependencies](https://david-dm.org/vanruesc/grunt-lemon.svg?branch=master)](https://david-dm.org/vanruesc/grunt-lemon)
 
 If you're using [rollup](https://github.com/rollup/rollup) and [rollup-plugin-string](https://github.com/TrySound/rollup-plugin-string) 
-to inline text file imports during the bundling process, you'll be faced with a problem when you decide to publish your module as a library. In order to make full use of rollup's [tree-shaking mechanism](https://github.com/rollup/rollup#a-next-generation-es6-module-bundler), you can't just publish your final bundle. It's important to expose your source files directly, but these files still use custom text file imports and cause errors for the end users of your library!  
+to inline text file imports during the bundling process, you'll be faced with a problem when you decide to publish your module as a library. 
+In order to make full use of rollup's [tree-shaking mechanism](https://github.com/rollup/rollup#a-next-generation-es6-module-bundler), you 
+can't just publish your final bundle. It's important to expose your source files directly, but these files still use custom text file 
+imports and cause errors for the end users of your library!  
 
 > When life gives you lemons, squeeze the lemons and make lemonade.
 
-This grunt plugin inlines text file imports in individual files __permanently__. It's supposed to be used before publishing a module. Restoring the affected files after the publishing phase requires you to create a simple backup. Take a look at the usage example below for details. 
+This grunt plugin inlines text file imports in individual files __permanently__. It's supposed to be used before publishing a module. 
+Restoring the affected files after the publishing phase requires you to create a simple backup. Take a look at the usage example below for 
+details. 
 
 
 ## Getting Started
@@ -34,7 +39,8 @@ grunt.loadNpmTasks("grunt-lemon");
 > The inlining process is __destructive__. Affected files will be changed __permanently__. Create a 
 [backup](https://github.com/vanruesc/grunt-lemon#creating-a-backup) first!  
 
-Define which imports should be considered by setting the ```options.extensions``` field and specify a source path ```src``` to the files that you wish to inline. 
+Define which imports should be considered by setting the ```options.extensions``` field and specify a source path ```src``` to the files 
+that you wish to inline. 
 
 ```
 // src/my/text.txt
@@ -84,16 +90,16 @@ lemon: {
 
 ### Options
 This plugin ignores all imports by default. Only those imports whose paths match the specified file ```extensions``` will be considered. 
-If you don't want to use the _const_ statement, simply set ```useVar``` to _true_. You can set the file ```encoding``` to one of the possible encoding values found in node's 
-[Buffer](https://github.com/nodejs/node/blob/master/lib/buffer.js) class. The default encoding is _utf8_. 
+If you don't want to use the _const_ statement, simply set ```useVar``` to _true_. You can set the file ```encoding``` to one of the possible 
+encoding values found in node's [Buffer](https://github.com/nodejs/node/blob/master/lib/buffer.js) class. The default encoding is _utf8_. 
 You may also provide options for the underlying [glob](https://github.com/isaacs/node-glob#options) mechanism. 
 
 ```js
 lemon: {
   options: {
     // Global options.
-    extensions: [".exe"],
-    encoding: "binary",
+    extensions: [".png"],
+    encoding: "base64",
     useVar: true,
     glob: { ... },
   },
@@ -101,8 +107,7 @@ lemon: {
     options: {
       // Local options.
       extensions: [".glsl"],
-      encoding: "utf8",
-      glob: null
+      encoding: "utf8"
     },
     src: "src/index.js"
   }
@@ -112,7 +117,7 @@ lemon: {
 
 ### Creating a Backup
 In order to create a backup of specific files, you'll need tools for copying and deleting files. The following example uses the basic grunt 
-plugins [grunt-contrib-copy](https://github.com/gruntjs/grunt-contrib-copy) and  [grunt-contrib-clean](https://github.com/gruntjs/grunt-contrib-clean).
+plugins [grunt-contrib-copy](https://github.com/gruntjs/grunt-contrib-copy) and [grunt-contrib-clean](https://github.com/gruntjs/grunt-contrib-clean).
 
 ```js
 // Gruntfile.js (copy setup)
