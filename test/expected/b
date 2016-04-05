@@ -1,2 +1,2 @@
-const fragment = "#define B 1\r\n";
-const vertex = "#define B 2\r\n";
+const fragment = "#define B 1";
+const vertex = "#define B 2";
