@@ -1,5 +1,5 @@
 /**
- * grunt-lemon v0.0.1 build Apr 05 2016
+ * grunt-lemon v0.0.2 build Apr 05 2016
  * https://github.com/vanruesc/grunt-lemon
  * Copyright 2016 Raoul van Rüschen, Zlib
  */
@@ -27,9 +27,9 @@ function lemon(grunt) {
 		const done = this.async();
 		const src = this.data.src;
 
-		const stmt = options.useVar ? "var" : "const";
+		const declaration = options.useVar ? "var" : "const";
 
-		// Ignoring the (optional) semicolon on purpose!
+		// Ignoring the (optional) semicolon on purpose.
 		const importRegExp = /import\s*(\w*)\s*from\s*[\"\'](.*)[\"\']/ig;
 
 		/**
@@ -168,7 +168,7 @@ function lemon(grunt) {
 					while(imports.length > 0) {
 
 						i = imports.pop();
-						data = data.substring(0, i.start) + stmt + " " + i.name + " = " + JSON.stringify(i.data) + data.substring(i.end);
+						data = data.substring(0, i.start) + declaration + " " + i.name + " = " + JSON.stringify(i.data) + data.substring(i.end);
 
 					}
 

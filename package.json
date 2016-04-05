@@ -1,6 +1,6 @@
 {
 	"name": "grunt-lemon",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "A plugin that inlines text file imports.",
 	"homepage": "https://github.com/vanruesc/grunt-lemon",
 	"main": "build/lemon.js",
