@@ -1,0 +1,58 @@
+{
+	"name": "grunt-lemon",
+	"version": "0.0.0",
+	"description": "A plugin that inlines text file imports.",
+	"homepage": "https://github.com/vanruesc/grunt-lemon",
+	"main": "build/lemon.js",
+	"jsnext:main": "tasks/lemon.js",
+	"license": "Zlib",
+
+	"keywords": [
+		"lemon", "sour",
+		"es2015", "es6",
+		"grunt", "plugin",
+		"import", "static", "text", "inline",
+		"glsl", "frag", "vert", "html", "css", "txt"
+	],
+
+	"author": {
+		"name": "Raoul van Rüschen",
+		"email": "vanruesc@outlook.de"
+	},
+
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/vanruesc/grunt-lemon.git"
+	},
+
+	"bugs": {
+		"url": "https://github.com/vanruesc/grunt-lemon/issues"
+	},
+
+	"engines": {
+		"node": ">= 4.0.0"
+	},
+
+	"scripts": {
+		"test": "node grunt-cli.js"
+	},
+
+	"dependencies": {
+		"async-waterfall": "0.1.x",
+		"glob": "7.0.x"
+	},
+
+	"devDependencies": {
+		"grunt": ">= 0.4.0",
+		"grunt-contrib-nodeunit": "1.0.x",
+		"grunt-contrib-jshint": "1.0.x",
+		"grunt-contrib-clean": "1.0.x",
+		"grunt-contrib-copy": "1.0.x",
+		"grunt-rollup": "0.7.x",
+		"rollup-plugin-node-resolve": "1.5.x"
+	},
+
+	"peerDependencies": {
+		"grunt": ">= 0.4.0"
+	}
+}
