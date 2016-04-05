@@ -1,5 +1,5 @@
 /**
- * grunt-lemon v0.0.0 build Apr 05 2016
+ * grunt-lemon v0.0.1 build Apr 05 2016
  * https://github.com/vanruesc/grunt-lemon
  * Copyright 2016 Raoul van Rüschen, Zlib
  */

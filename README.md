@@ -3,16 +3,12 @@
 [![npm version](https://badge.fury.io/js/grunt-lemon.svg)](https://badge.fury.io/js/grunt-lemon) 
 [![Dependencies](https://david-dm.org/vanruesc/grunt-lemon.svg?branch=master)](https://david-dm.org/vanruesc/grunt-lemon)
 
-If you are using [rollup](https://github.com/rollup/rollup) and [rollup-plugin-string](https://github.com/TrySound/rollup-plugin-string) 
-to inline text file imports during the bundling process, you'll be faced with a problem when you decide to publish your module as a library. 
-In order to support the [tree-shaking mechanism](https://github.com/rollup/rollup#a-next-generation-es6-module-bundler) of rollup, you'll 
-want to expose your source files directly, but these individual files still use the text file imports. Therefore, the end users of your 
-library are forced to use that inlining plugin as well during their own bundling process!  
+If you're using [rollup](https://github.com/rollup/rollup) and [rollup-plugin-string](https://github.com/TrySound/rollup-plugin-string) 
+to inline text file imports during the bundling process, you'll be faced with a problem when you decide to publish your module as a library. In order to make full use of rollup's [tree-shaking mechanism](https://github.com/rollup/rollup#a-next-generation-es6-module-bundler), you can't just publish your final bundle. It's important to expose your source files directly, but these files still use custom text file imports and cause errors for the end users of your library!  
 
 > When life gives you lemons, squeeze the lemons and make lemonade.
 
-This grunt plugin fills this specific development gap by inlining text file imports in individual files __permanently__. In order to 
-restore the affected files after publishing your module, you'll need to create a backup first. Check out the usage example below for details. 
+This grunt plugin inlines text file imports in individual files __permanently__. It's supposed to be used before publishing a module. Restoring the affected files after the publishing phase requires you to create a simple backup. Take a look at the usage example below for details. 
 
 
 ## Getting Started
@@ -38,8 +34,7 @@ grunt.loadNpmTasks("grunt-lemon");
 > The inlining process is __destructive__. Affected files will be changed __permanently__. Create a 
 [backup](https://github.com/vanruesc/grunt-lemon#creating-a-backup) first!  
 
-First, define which imports should be inlined by setting the ```options.extensions``` field. Then, specify a source path ```src``` to the 
-files that you wish to inline. 
+Define which imports should be considered by setting the ```options.extensions``` field and specify a source path ```src``` to the files that you wish to inline. 
 
 ```
 // src/my/text.txt
@@ -89,8 +84,8 @@ lemon: {
 
 ### Options
 This plugin ignores all imports by default. Only those imports whose paths match the specified file ```extensions``` will be considered. 
-If you don't want to use the _const_ statement, simply set ```useVar``` to _true_. You can set the file ```encoding``` to one of 
-[these](https://github.com/nodejs/node/blob/master/lib/buffer.js#L300-L309) possible values. The default encoding is _utf8_. 
+If you don't want to use the _const_ statement, simply set ```useVar``` to _true_. You can set the file ```encoding``` to one of the possible encoding values found in node's 
+[Buffer](https://github.com/nodejs/node/blob/master/lib/buffer.js) class. The default encoding is _utf8_. 
 You may also provide options for the underlying [glob](https://github.com/isaacs/node-glob#options) mechanism. 
 
 ```js
