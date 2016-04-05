@@ -168,7 +168,10 @@ function lemon(grunt) {
 					while(imports.length > 0) {
 
 						i = imports.pop();
-						data = data.substring(0, i.start) + declaration + " " + i.name + " = " + JSON.stringify(i.data) + data.substring(i.end);
+
+						data = data.substring(0, i.start) +
+							declaration + " " + i.name + " = " + JSON.stringify(i.data) +
+							data.substring(i.end);
 
 					}
 
