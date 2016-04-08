@@ -1,18 +1,21 @@
 {
 	"name": "grunt-lemon",
-	"version": "0.0.2",
-	"description": "A plugin that inlines text file imports.",
+	"version": "0.1.0",
+	"description": "A plugin that inlines file imports.",
 	"homepage": "https://github.com/vanruesc/grunt-lemon",
-	"main": "build/lemon.js",
-	"jsnext:main": "tasks/lemon.js",
+	"main": "tasks/lemon.js",
+	"jsnext:main": "src/lemon.js",
 	"license": "Zlib",
 
 	"keywords": [
-		"lemon", "sour",
 		"es2015", "es6",
 		"grunt", "plugin",
-		"import", "static", "text", "inline",
-		"glsl", "frag", "vert", "html", "css", "txt"
+		"static", "custom",
+		"file", "import", "inline",
+		"glsl", "frag", "vert",
+		"html", "css", "xml", "txt",
+		"binary", "hex", "buffer",
+		"jpg", "png", "image"
 	],
 
 	"author": {
