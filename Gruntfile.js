@@ -41,18 +41,25 @@ module.exports = function(grunt) {
 			backup: ["test/backup"]
 		},
 
-		// Configuration to be run and tested.
+		// Setup to be run and tested.
 		lemon: {
 			options: {
-				extensions: [".frag", ".vert"],
-				encoding: "utf8",
-				useVar: false,
-				glob: null
+				extensions: {
+					".frag": "utf8",
+					".vert": "utf8",
+					".png": "base64"
+				}
 			},
 			taskA: {
 				src: "test/inline/a/index.js"
 			},
-			taskBC: {
+			taskB: {
+				src: "test/inline/b/index.js"
+			},
+			taskC: {
+				src: "test/inline/c/index.js"
+			},
+			taskD: {
 				src: "test/inline/glob/**/index.js"
 			}
 		},
@@ -71,7 +78,7 @@ module.exports = function(grunt) {
 				]
 			},
 			dist: {
-				src: "src/lemon.js",
+				src: "src/task.js",
 				dest: "tasks/lemon.js"
 			}
 		},
