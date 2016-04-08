@@ -86,7 +86,7 @@ lemon: {
     extensions: {
       ".html": "utf8",
       ".css": "utf8"
-    },
+    }
   },
   task: {
     src: "src/**/tpl.js"
