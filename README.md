@@ -3,17 +3,19 @@
 [![npm version](https://badge.fury.io/js/grunt-lemon.svg)](https://badge.fury.io/js/grunt-lemon) 
 [![Dependencies](https://david-dm.org/vanruesc/grunt-lemon.svg?branch=master)](https://david-dm.org/vanruesc/grunt-lemon)
 
-If you're using [rollup](https://github.com/rollup/rollup) and [rollup-plugin-string](https://github.com/TrySound/rollup-plugin-string) 
-to inline text file imports during the bundling process, you'll be faced with a problem when you decide to publish your module as a library. 
-In order to make full use of rollup's [tree-shaking mechanism](https://github.com/rollup/rollup#a-next-generation-es6-module-bundler), you 
-can't just publish your final bundle. It's important to expose your source files directly, but these files still use custom text file 
-imports and cause errors for the end users of your library!  
+This grunt plugin inlines file imports in individual files __permanently__. It's best suited for the prepublish phase. 
+Restoring the affected files after publishing your module requires you to create a backup of said files. Take a look at the usage 
+example for details. 
+
+If you are using [rollup](https://github.com/rollup/rollup) and [rollup-plugin-string](https://github.com/TrySound/rollup-plugin-string) 
+to inline _text_ file imports during the bundling process, you'll be faced with a problem when you decide to publish your module as a library. 
+In order to make full use of rollup's [tree-shaking capabilities](https://github.com/rollup/rollup#a-next-generation-es6-module-bundler), you 
+can't just publish your final bundle. It's important to expose your source files directly, but these files still use custom file imports and 
+will cause errors for the end users of your library!  
 
 > When life gives you lemons, squeeze the lemons and make lemonade.
 
-This grunt plugin inlines text file imports in individual files __permanently__. It's supposed to be used before publishing a module. 
-Restoring the affected files after the publishing phase requires you to create a simple backup. Take a look at the usage example below for 
-details. 
+In contrast to rollup-plugin-string which focuses on inlining text files, grunt-lemon allows you to inline files of various types. 
 
 
 ## Getting Started
@@ -36,10 +38,10 @@ grunt.loadNpmTasks("grunt-lemon");
 
 
 ## Usage
-> The inlining process is __destructive__. Affected files will be changed __permanently__. Create a 
+The inlining process is __destructive__. Affected files will be changed __permanently__. Create a 
 [backup](https://github.com/vanruesc/grunt-lemon#creating-a-backup) first!  
 
-Define which imports should be considered by setting the ```options.extensions``` field and specify a source path ```src``` to the files 
+Define which imports should be considered by defining the ```options.extensions``` and specify a source path ```src``` to the files 
 that you wish to inline. 
 
 ```
@@ -57,7 +59,9 @@ import text from "./my/text.txt";
 // Gruntfile.js
 lemon: {
   options: {
-    extensions: [".txt"]
+    extensions: {
+      ".txt": "utf8"
+    }
   },
   taskA: {
     src: "src/index.js"
@@ -74,7 +78,7 @@ const text = "hello world";
 
 
 ### Glob
-You may use [glob patterns](https://github.com/isaacs/node-glob#glob-primer) in order to inline a bunch of files at once. 
+You may use [glob patterns](https://github.com/isaacs/node-glob#glob-primer) to inline a bunch of files at once. 
 
 ```js
 lemon: {
@@ -89,25 +93,31 @@ lemon: {
 
 
 ### Options
-This plugin ignores all imports by default. Only those imports whose paths match the specified file ```extensions``` will be considered. 
-If you don't want to use the _const_ statement, simply set ```useVar``` to _true_. You can set the file ```encoding``` to one of the possible 
-encoding values found in node's [Buffer](https://github.com/nodejs/node/blob/master/lib/buffer.js) class. The default encoding is _utf8_. 
-You may also provide options for the underlying [glob](https://github.com/isaacs/node-glob#options) mechanism. 
+- Only those imports whose file extensions explicitly match one of the specified ```extensions``` will be considered. Each extension defines 
+its own encoding. 
+- If you don't want to use the _const_ statement, simply set ```useVar``` to _true_.  
+- You can set the  ```encoding``` of the source files that will be parsed. Use one of the possible encoding values specified in node's 
+[Buffer](https://github.com/nodejs/node/blob/master/lib/buffer.js) class. The default encoding is _utf8_.  
+- You may also provide ```glob``` options for the underlying [glob](https://github.com/isaacs/node-glob#options) mechanism. 
 
 ```js
 lemon: {
   options: {
     // Global options.
-    extensions: [".png"],
-    encoding: "base64",
+    extensions: {
+      ".html": "utf8",
+      ".png": "base64"
+    },
+    encoding: "utf8",
     useVar: true,
     glob: { ... },
   },
   squeeze: {
     options: {
       // Local options.
-      extensions: [".glsl"],
-      encoding: "utf8"
+      extensions: {
+        ".glsl": "utf8"
+      }
     },
     src: "src/index.js"
   }
