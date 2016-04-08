@@ -83,7 +83,10 @@ You may use [glob patterns](https://github.com/isaacs/node-glob#glob-primer) to 
 ```js
 lemon: {
   options: {
-    extensions: [".html", ".css"]
+    extensions: {
+      ".html": "utf8",
+      ".css": "utf8"
+    },
   },
   task: {
     src: "src/**/tpl.js"
