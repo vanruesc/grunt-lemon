@@ -1,7 +1,9 @@
-# grunt-lemon 
+# grunt-lemon (discontinued)
 [![Build status](https://travis-ci.org/vanruesc/grunt-lemon.svg?branch=master)](https://travis-ci.org/vanruesc/grunt-lemon) 
 [![npm version](https://badge.fury.io/js/grunt-lemon.svg)](https://badge.fury.io/js/grunt-lemon) 
 [![Dependencies](https://david-dm.org/vanruesc/grunt-lemon.svg?branch=master)](https://david-dm.org/vanruesc/grunt-lemon)
+
+__Deprecated in favor of [grunt-inline-import](https://github.com/vanruesc/grunt-inline-import).__
 
 This grunt plugin inlines file imports in individual files __permanently__. It's best suited for the prepublish phase. 
 Restoring the affected files after publishing your module requires you to create a backup of said files. Take a look at the usage 
