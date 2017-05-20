@@ -1,7 +1,7 @@
 /**
- * grunt-lemon v0.1.0 build Apr 08 2016
+ * grunt-lemon v0.1.1 build May 20 2017
  * https://github.com/vanruesc/grunt-lemon
- * Copyright 2016 Raoul van Rüschen, Zlib
+ * Copyright 2017 Raoul van Rüschen, Zlib
  */
 
 'use strict';
@@ -197,7 +197,7 @@ function squeeze(file, options, done) {
  * @param {Object} grunt - The grunt instance.
  */
 
-function task(grunt) {
+var task = function(grunt) {
 
 	grunt.registerMultiTask("lemon", "Inline file imports.", function() {
 
@@ -253,6 +253,6 @@ function task(grunt) {
 
 	});
 
-}
+};
 
 module.exports = task;
