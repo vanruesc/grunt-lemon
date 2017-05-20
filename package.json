@@ -4,7 +4,7 @@
 	"description": "A plugin that inlines file imports.",
 	"homepage": "https://github.com/vanruesc/grunt-lemon",
 	"main": "tasks/lemon.js",
-	"jsnext:main": "src/lemon.js",
+	"module": "src/lemon.js",
 	"license": "Zlib",
 
 	"keywords": [
